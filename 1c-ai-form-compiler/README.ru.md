@@ -249,6 +249,17 @@ one-c-form-compiler apply   --project C:\path\to\edt-project --form Catalog.Но
 единственный источник правил для агента: порядок работы, формат плана, коды ошибок и что с ними
 делать, ограничения. Ключи API не нужны.
 
+## Смежные проекты
+
+* **[v8unpack](https://github.com/saby-integration/v8unpack)** (MIT) — распаковка и сборка `.epf` /
+  `.erf` и контейнеров форм; нужен при запуске из исходников (`v8unpack==1.2.13`).
+* **Релизные сборки под Windows** — [Releases на GitHub](https://github.com/dmg4ebay-sys/1c-ai-form-compiler/releases)
+  (архив `one-c-form-compiler-*-win-x64.zip` и `SHA256SUMS.txt`).
+
+## Автор
+
+Разработка и сопровождение — **mdg_cloder** ([GitHub @dmg4ebay-sys](https://github.com/dmg4ebay-sys)).
+
 ## Сборка релиза, тесты, лицензия
 
 * Релиз: `powershell -ExecutionPolicy Bypass -File packaging\build_release.ps1` собирает

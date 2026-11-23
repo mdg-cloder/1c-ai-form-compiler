@@ -310,6 +310,17 @@ gets the program folder, `LICENSE`, the end-user files from `packaging/release/`
 Tests that need a real ordinary form use the synthetic sample `tests/fixtures/sample_ordinary.epf`
 and are skipped when it is absent; tests that need v8unpack are skipped without it.
 
+## Related tools
+
+* **[v8unpack](https://github.com/saby-integration/v8unpack)** (MIT) — unpacks and packs `.epf` /
+  `.erf` and form containers; required at runtime when you install from source (`v8unpack==1.2.13`).
+* **Windows release builds** of this project — [GitHub Releases](https://github.com/dmg4ebay-sys/1c-ai-form-compiler/releases)
+  (`one-c-form-compiler-*-win-x64.zip` plus `SHA256SUMS.txt`).
+
+## Author
+
+Developed and maintained by **mdg_cloder** ([GitHub @dmg4ebay-sys](https://github.com/dmg4ebay-sys)).
+
 ## License
 
 MIT — see `LICENSE`. Copyright (c) 2026 mdg_cloder.
