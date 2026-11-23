@@ -1,0 +1,50 @@
+[build-system]
+# setuptools 77+ understands the SPDX `license` string and `license-files`.
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "one-c-form-compiler"
+version = "0.5.0"
+description = "Command-line editor for 1C:Enterprise 8.3 ordinary forms (FormElements27) in EPF/ERF files and EDT projects (Form.oform): elements, table fields, command panels and events, by commands or JSON edit plans"
+readme = "README.md"
+requires-python = ">=3.14,<3.15"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "mdg_cloder" }]
+keywords = ["1C", "1C:Enterprise", "ordinary forms", "EPF", "EDT"]
+classifiers = [
+  "Environment :: Console",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python :: 3.14",
+]
+# v8unpack is imported in-process (Form.oform, table field cells) and runs the EPF/ERF backend.
+dependencies = ["v8unpack==1.2.13"]
+
+[project.optional-dependencies]
+# The test suite needs only the standard library (unittest); the extra is kept for `pip install -e ".[test]"`.
+test = []
+# Compatibility alias: v8unpack used to be optional and is now a regular dependency.
+backend = []
+# Optional Claude provider for the `ai` command (official Anthropic SDK).
+claude = ["anthropic>=0.40"]
+# Windows release build (packaging/build_release.ps1).
+build = ["pyinstaller==6.22.3"]
+
+[project.scripts]
+one-c-form-compiler = "one_c_form_compiler.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"one_c_form_compiler.core" = ["*.json", "probe_epf/*"]
+"one_c_form_compiler" = ["AGENT_GUIDE.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["integration: offline integration contract tests"]

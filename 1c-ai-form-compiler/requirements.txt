@@ -1,0 +1,2 @@
+# Runtime dependencies. Keep this file aligned with project.dependencies in pyproject.toml.
+v8unpack==1.2.13

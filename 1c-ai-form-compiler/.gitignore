@@ -1,0 +1,52 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Build output (packaging/build_release.ps1, PyInstaller, setuptools)
+build/
+dist/
+.venv-build/
+# PyInstaller writes specs at the root; the maintained one is packaging/one-c-form-compiler.spec
+/*.spec
+
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
+.tmp/
+
+# Form backups written next to an edited Form.oform, local tool state
+.one-c-form-backups/
+.superpowers/
+
+# 1C containers stay local; only the synthetic sample is tracked
+*.epf
+!tests/fixtures/sample_ordinary.epf
+tests/fixtures/*.form
+*.erf
+*.cf
+*.cfe
+*.dt
+*.1CD
+*.oform
+
+# Release artifacts (packaging/build_release.ps1 writes them to dist/ or -OutDir)
+*.zip
+SHA256SUMS.txt
+
+# Scratch edit plans at the repository root
+/plan*.json
+
+# Local assistant and editor settings
+CLAUDE.md
+AGENTS.md
+.claude/
+.vscode/
+.idea/

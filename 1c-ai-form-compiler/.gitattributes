@@ -1,0 +1,26 @@
+# Normalise text to LF in the repository; checkouts use the platform default.
+* text=auto
+
+# Windows-only scripts and 1C modules keep CRLF in every checkout.
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.bsl text eol=crlf
+
+*.py text
+*.json text
+*.md text
+*.toml text
+*.yml text
+
+# 1C containers and other binaries
+*.epf binary
+*.erf binary
+*.cf binary
+*.cfe binary
+*.zip binary
+*.png binary
+*.ico binary
+
+# The runtime-check probe skeleton is packed by v8unpack as is: keep its bytes exactly as committed.
+src/one_c_form_compiler/core/probe_epf/** -text

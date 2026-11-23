@@ -1,0 +1,62 @@
+name: ci
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: 1c-ai-form-compiler
+
+jobs:
+  tests:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Install
+        run: python -m pip install -e ".[test]"
+      - name: Import cycles
+        run: python tools/check_import_cycles.py
+      - name: Unit and integration tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v
+
+  release-smoke:
+    runs-on: windows-latest
+    needs: tests
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Build release (PyInstaller onedir)
+        shell: pwsh
+        run: ./packaging/build_release.ps1 -Python python
+      - name: Smoke-run the built executable
+        shell: pwsh
+        run: |
+          $exe = Join-Path $PWD "dist/one-c-form-compiler/one-c-form-compiler.exe"
+          & $exe --version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $guide = & $exe guide
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $guide | Select-Object -First 5
+          & $exe doctor
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & $exe inspect tests/fixtures/sample_ordinary.epf --json | Out-Null
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Check the release zip layout
+        shell: pwsh
+        run: |
+          $zip = Get-ChildItem dist/*.zip | Select-Object -First 1
+          python -c "import sys, zipfile; names = zipfile.ZipFile(sys.argv[1]).namelist(); top = {n.split('/')[0] for n in names}; bad = [n for n in names if chr(92) in n]; assert len(top) == 1 and not bad, (top, bad[:5]); exe = next(iter(top)) + '/one-c-form-compiler/one-c-form-compiler.exe'; assert exe in names, exe; print(len(names), 'entries under', top)" $zip.FullName
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: one-c-form-compiler-win-x64
+          path: 1c-ai-form-compiler/dist/*.zip

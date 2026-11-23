@@ -1,0 +1,4 @@
+# Development: runtime dependencies plus the release build tool.
+# The tests use only the standard library (python -m unittest).
+-r requirements.txt
+pyinstaller==6.22.3
