@@ -1,6 +1,6 @@
 # 1c-ai-form-compiler
 
-[English version](README.md)
+[English version](README.md) · [Українська версія](README.uk.md)
 
 `one-c-form-compiler` — утилита командной строки для Windows, которая правит **обычные формы
 1С:Предприятия 8.3** (толстый клиент, профиль элементов `FormElements27`):
@@ -253,12 +253,12 @@ one-c-form-compiler apply   --project C:\path\to\edt-project --form Catalog.Но
 
 * **[v8unpack](https://github.com/saby-integration/v8unpack)** (MIT) — распаковка и сборка `.epf` /
   `.erf` и контейнеров форм; нужен при запуске из исходников (`v8unpack==1.2.13`).
-* **Релизные сборки под Windows** — [Releases на GitHub](https://github.com/dmg4ebay-sys/1c-ai-form-compiler/releases)
+* **Релизные сборки под Windows** — [Releases на GitHub](https://github.com/mdg-cloder/1c-ai-form-compiler/releases)
   (архив `one-c-form-compiler-*-win-x64.zip` и `SHA256SUMS.txt`).
 
 ## Автор
 
-Разработка и сопровождение — **mdg_cloder** ([GitHub @dmg4ebay-sys](https://github.com/dmg4ebay-sys)).
+Разработка и сопровождение — **mdg_cloder** ([GitHub @mdg-cloder](https://github.com/mdg-cloder)).
 
 ## Сборка релиза, тесты, лицензия
 

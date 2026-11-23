@@ -1,6 +1,6 @@
 # 1c-ai-form-compiler
 
-[Русская версия](README.ru.md)
+[Українська версія](README.uk.md) · [Русская версия](README.ru.md)
 
 `one-c-form-compiler` is a Windows command-line tool that edits **ordinary forms of
 1C:Enterprise 8.3** (thick client, element profile `FormElements27`):
@@ -314,12 +314,12 @@ and are skipped when it is absent; tests that need v8unpack are skipped without 
 
 * **[v8unpack](https://github.com/saby-integration/v8unpack)** (MIT) — unpacks and packs `.epf` /
   `.erf` and form containers; required at runtime when you install from source (`v8unpack==1.2.13`).
-* **Windows release builds** of this project — [GitHub Releases](https://github.com/dmg4ebay-sys/1c-ai-form-compiler/releases)
+* **Windows release builds** of this project — [GitHub Releases](https://github.com/mdg-cloder/1c-ai-form-compiler/releases)
   (`one-c-form-compiler-*-win-x64.zip` plus `SHA256SUMS.txt`).
 
 ## Author
 
-Developed and maintained by **mdg_cloder** ([GitHub @dmg4ebay-sys](https://github.com/dmg4ebay-sys)).
+Developed and maintained by **mdg_cloder** ([GitHub @mdg-cloder](https://github.com/mdg-cloder)).
 
 ## License
 
